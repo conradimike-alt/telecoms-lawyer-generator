@@ -2,7 +2,7 @@ export default async function handler(req, res) {
   if (req.method!== 'POST') return res.status(405).json({error:'POST only'});
   const { scenario } = req.body;
 
-  const HERO_PROMPT = `Single panel comic book cartoon, bald telecoms lawyer hero with black glasses, white shirt, black tie, brown superhero cape flowing, TL shield badge on chest that says TL, expressive comic face, SAME CHARACTER, bright comic book style, bold black outlines, vibrant flat colors, heroic pose, background scene of ${scenario}, bottom yellow banner text "${scenario.toUpperCase()}"`;
+  const HERO_PROMPT = `Single panel comic book cartoon, bald telecoms lawyer hero with black glasses, white shirt, black tie, brown superhero cape flowing, TL shield badge on chest that says TL, expressive comic face, SAME CHARACTER, bright comic book style, bold black outlines, vibrant flat colors, heroic pose, background scene of ${scenario}, no text, no words, no letters, no captions`;
 
   try {
     const startRes = await fetch("https://api.replicate.com/v1/models/black-forest-labs/flux-schnell/predictions", {
