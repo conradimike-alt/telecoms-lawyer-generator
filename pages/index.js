@@ -1,14 +1,22 @@
 import { useState, useEffect } from 'react';
+
 export default function Home() {
   const [scenario, setScenario] = useState("");
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const p = new URLSearchParams(window.location.search).get('scenario');
-    if (p) { const d = decodeURIComponent(p.replace(/\+/g, ' ')); setScenario(d); generate(d); }
+    if (p) {
+      const d = decodeURIComponent(p.replace(/\+/g, ' '));
+      setScenario(d);
+      generate(d);
+    }
   }, []);
+
   async function generate(customScen) {
-    const s = customScen || scenario; if (!s.trim()) return;
+    const s = customScen || scenario;
+    if (!s.trim()) return;
     setLoading(true); setImage(null);
     const url = new URL(window.location); url.searchParams.set('scenario', s);
     window.history.replaceState({}, '', url);
@@ -26,20 +34,35 @@ export default function Home() {
       }
     } catch (e) { alert(e.message); setLoading(false); }
   }
+
   function emailMike() {
     const viewLink = window.location.href;
     const subject = encodeURIComponent("Here's my Telecoms Lawyer image");
-    const body = encodeURIComponent(`Scenario: ${scenario}\n\nView as webpage: ${viewLink}\nDirect image: ${image}`);
+    const body = encodeURIComponent(`Hi Mike,
+
+Scenario: ${scenario}
+
+View as webpage: ${viewLink}
+Direct image: ${image}
+
+Thanks!`);
     window.location.href = `mailto:mike.conradi@dlapiper.com?subject=${subject}&body=${body}`;
   }
+
   return (
     <div style={{fontFamily:'Arial Black, Arial', background:'#fefefe', minHeight:'100vh'}}>
-      <div style={{textAlign:'center', padding:'15px'}}><img src="/header.png" style={{maxWidth:'100%', maxHeight:'140px'}} /></div>
+      <div style={{textAlign:'center', padding:'15px'}}>
+        <img src="/header.png" alt="header" style={{maxWidth:'100%', maxHeight:'140px'}} />
+      </div>
+
       <div style={{maxWidth:'680px', margin:'0 auto', padding:'16px'}}>
         <div style={{border:'3px solid #000', borderRadius:'14px', padding:'16px', background:'#fff', boxShadow:'6px 6px 0 #000'}}>
-          <input value={scenario} onChange={e=>setScenario(e.target.value)} style={{width:'100%', padding:'14px', border:'3px solid #000', borderRadius:'10px', boxSizing:'border-box'}} />
-          <button onClick={()=>generate()} style={{width:'100%', marginTop:'12px', background:'#ffeb3b', border:'3px solid #000', padding:'14px', fontWeight:900, borderRadius:'10px'}}>{loading ? 'GENERATING...' : 'GENERATE CARTOON NOW'}</button>
+          <input value={scenario} onChange={e=>setScenario(e.target.value)} style={{width:'100%', padding:'14px', border:'3px solid #000', borderRadius:'10px', fontSize:'16px', boxSizing:'border-box'}} />
+          <button onClick={()=>generate()} style={{width:'100%', marginTop:'12px', background:'#ffeb3b', border:'3px solid #000', padding:'14px', fontWeight:900, borderRadius:'10px'}}>
+            {loading ? 'GENERATING...' : 'GENERATE CARTOON NOW'}
+          </button>
         </div>
+
         {image && (
           <>
             <div style={{marginTop:'24px', border:'4px solid #000', borderRadius:'12px', overflow:'hidden', position:'relative', lineHeight:0}}>
@@ -49,7 +72,13 @@ export default function Home() {
                 <div style={{background:'#ffeb3b', border:'3px solid #000', padding:'10px 36px', fontWeight:900, clipPath:'polygon(0 0, 100% 0, 92% 50%, 100% 100%, 0 100%, 8% 50%)', textTransform:'uppercase'}}>{scenario}</div>
               </div>
             </div>
-            <button onClick={emailMike} style={{width:'100%', marginTop:'20px', background:'#1e88e5', color:'#fff', border:'3px solid #000', padding:'16px', fontWeight:900, fontSize:'1.2rem', borderRadius:'12px', cursor:'pointer', boxShadow:'6px 6px 0 #000'}}>📧 EMAIL THIS TO MIKE</button>
+
+            {/* BUTTON - THIS SHOULD NOW APPEAR */}
+            <div style={{marginTop:'20px', background:'red', padding:'4px', borderRadius:'12px'}}>
+              <button onClick={emailMike} style={{width:'100%', background:'#1e88e5', color:'#fff', border:'3px solid #000', padding:'16px', fontWeight:900, fontSize:'1.2rem', borderRadius:'10px', cursor:'pointer'}}>
+                📧 EMAIL THIS TO MIKE
+              </button>
+            </div>
           </>
         )}
       </div>
