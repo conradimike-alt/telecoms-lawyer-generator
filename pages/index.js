@@ -38,17 +38,17 @@ export default function Home() {
   return (
     <div style={{fontFamily:'Arial Black, Arial', background:'#fefefe', minHeight:'100vh', padding:'0'}}>
 
-      {/* === PAGE HEADER - NOW USING YOUR BANNER IMAGE === */}
-      <div style={{background:'#fff', padding:'15px 10px 10px', textAlign:'center', borderBottom:'4px solid #000'}}>
+      {/* === TRANSPARENT PAGE HEADER === */}
+      <div style={{background:'transparent', padding:'15px 10px 5px', textAlign:'center'}}>
         <img
           src="/header.png"
           alt="TELECOMS LAWYER: HERO OF CONNECTIVITY"
           style={{ maxWidth: '100%', height: 'auto', maxHeight: '140px', display: 'inline-block' }}
         />
       </div>
+      <div style={{height:'3px', background:'#000', marginBottom:'10px'}} />
 
-      <div style={{maxWidth:'680px', margin:'20px auto', padding:'16px'}}>
-        {/* Input */}
+      <div style={{maxWidth:'680px', margin:'10px auto', padding:'16px'}}>
         <div style={{border:'3px solid #000', borderRadius:'14px', padding:'16px', background:'#fff', boxShadow:'6px 6px 0 #000'}}>
           <input value={scenario} onChange={e=>setScenario(e.target.value)} placeholder="e.g. saves cat from a tree" style={{width:'100%', padding:'14px', border:'3px solid #000', borderRadius:'10px', fontSize:'16px'}} />
           <button onClick={()=>generate()} disabled={loading} style={{width:'100%', marginTop:'12px', background:'#ffeb3b', border:'3px solid #000', padding:'14px', fontWeight:900, fontSize:'1.1rem', borderRadius:'10px', cursor:'pointer'}}>
@@ -56,7 +56,6 @@ export default function Home() {
           </button>
         </div>
 
-        {/* === IMAGE CARD - BANNERS ON TOP OF IMAGE === */}
         {image && (
           <div style={{marginTop:'24px', border:'4px solid #000', borderRadius:'12px', overflow:'hidden', boxShadow:'6px 6px 0 #000', position:'relative', lineHeight:0}}>
             <img src={image} style={{width:'100%', display:'block'}} />
@@ -72,15 +71,32 @@ export default function Home() {
               TELECOMS LAWYER..
             </div>
 
-            {/* Yellow banner ON TOP OF IMAGE at bottom */}
+            {/* === NEW: YELLOW RIBBON BANNER INSIDE IMAGE (like your Towerco example) === */}
             <div style={{
-              position:'absolute', bottom:0, left:0, right:0,
-              background:'#ffeb3b', padding:'14px',
-              textAlign:'center', fontWeight:900, fontSize:'16px',
-              textTransform:'uppercase', borderTop:'4px solid #000', lineHeight:1.2
+              position:'absolute',
+              bottom:'18px',
+              left:'50%',
+              transform:'translateX(-50%)',
+              filter:'drop-shadow(3px 3px 0 #000)',
+              maxWidth:'90%',
+              lineHeight:1.2
             }}>
-              {scenario}
+              <div style={{
+                background:'#ffeb3b',
+                border:'3px solid #000',
+                padding:'10px 36px',
+                fontWeight:900,
+                fontSize:'17px',
+                textTransform:'uppercase',
+                textAlign:'center',
+                whiteSpace:'nowrap',
+                // This creates the pointed ribbon ends like your example
+                clipPath:'polygon(0 0, 100% 0, 92% 50%, 100% 100%, 0 100%, 8% 50%)',
+              }}>
+                {scenario}
+              </div>
             </div>
+
           </div>
         )}
       </div>
