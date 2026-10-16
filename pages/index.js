@@ -38,20 +38,13 @@ export default function Home() {
   return (
     <div style={{fontFamily:'Arial Black, Arial', background:'#fefefe', minHeight:'100vh', padding:'0'}}>
 
-      {/* === PAGE HEADER - EXACTLY LIKE YOUR ORIGINAL === */}
-      <div style={{background:'#fff', padding:'25px 10px 15px', textAlign:'center', borderBottom:'4px solid #000'}}>
-        <h1 style={{
-          margin:0,
-          fontSize:'clamp(1.6rem, 4.5vw, 3.2rem)',
-          color:'#1e88e5',
-          WebkitTextStroke:'3px #000',
-          textShadow:'5px 5px 0 #000',
-          letterSpacing:'1px',
-          lineHeight:1,
-          transform:'rotate(-1deg)'
-        }}>
-          ✨ TELECOMS LAWYER: HERO OF CONNECTIVITY ✨
-        </h1>
+      {/* === PAGE HEADER - NOW USING YOUR BANNER IMAGE === */}
+      <div style={{background:'#fff', padding:'15px 10px 10px', textAlign:'center', borderBottom:'4px solid #000'}}>
+        <img
+          src="/header.png"
+          alt="TELECOMS LAWYER: HERO OF CONNECTIVITY"
+          style={{ maxWidth: '100%', height: 'auto', maxHeight: '140px', display: 'inline-block' }}
+        />
       </div>
 
       <div style={{maxWidth:'680px', margin:'20px auto', padding:'16px'}}>
