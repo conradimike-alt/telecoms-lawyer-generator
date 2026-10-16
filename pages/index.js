@@ -36,24 +36,23 @@ export default function Home() {
 
   return (
     <div style={{fontFamily:'Arial Black, Arial', background:'#eee', minHeight:'100vh', padding:'20px'}}>
-      <div style={{maxWidth:'700px', margin:'0 auto'}}>
+      <div style={{maxWidth:'650px', margin:'0 auto'}}>
         <input value={scenario} onChange={e=>setScenario(e.target.value)} placeholder="e.g. saves cat from a tree" style={{width:'100%', padding:'12px', border:'3px solid #000', borderRadius:'8px'}} />
         <button onClick={()=>generate()} disabled={loading} style={{width:'100%', marginTop:'10px', background:'#ffeb3b', border:'3px solid #000', padding:'12px', fontWeight:900, cursor:'pointer'}}>
           {loading? 'GENERATING...' : 'GENERATE'}
         </button>
 
         {image && (
-          <div style={{marginTop:'20px', background:'#fff', border:'3px solid #000', borderRadius:'12px', overflow:'hidden', boxShadow:'5px 5px 0 #000'}}>
-            {/* TOP TITLE - ALWAYS THIS */}
-            <div style={{padding:'12px', textAlign:'center', fontWeight:900, fontSize:'18px', background:'#fff', borderBottom:'3px solid #000'}}>
-              TELECOMS LAWYER...
-            </div>
-
-            {/* THE IMAGE - WITH NO TEXT IN IT */}
+          <div style={{marginTop:'20px', border:'3px solid #000', borderRadius:'12px', overflow:'hidden', boxShadow:'5px 5px 0 #000', position:'relative', lineHeight:0}}>
             <img src={image} style={{width:'100%', display:'block'}} />
 
-            {/* BOTTOM YELLOW BANNER - SAME AS PROMPT */}
-            <div style={{background:'#ffeb3b', padding:'14px', textAlign:'center', fontWeight:900, fontSize:'18px', textTransform:'uppercase', borderTop:'3px solid #000'}}>
+            {/* TOP BANNER - ON TOP OF IMAGE */}
+            <div style={{position:'absolute', top:0, left:0, right:0, background:'#1e88e5', color:'#fff', padding:'12px', textAlign:'center', fontWeight:900, fontSize:'18px', letterSpacing:'0.5px', textShadow:'1px 1px 0 #000', borderBottom:'3px solid #000'}}>
+              TELECOMS LAWYER..
+            </div>
+
+            {/* BOTTOM BANNER - ON TOP OF IMAGE */}
+            <div style={{position:'absolute', bottom:0, left:0, right:0, background:'#ffeb3b', padding:'14px', textAlign:'center', fontWeight:900, fontSize:'16px', textTransform:'uppercase', borderTop:'3px solid #000', lineHeight:'1.2'}}>
               {scenario}
             </div>
           </div>
