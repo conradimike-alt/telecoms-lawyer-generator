@@ -46,8 +46,7 @@ export default function Home() {
           style={{ maxWidth: '100%', height: 'auto', maxHeight: '140px', display: 'inline-block' }}
         />
       </div>
-      <div style={{height:'3px', background:'#000', marginBottom:'10px'}} />
-
+      
       <div style={{maxWidth:'680px', margin:'10px auto', padding:'16px'}}>
         <div style={{border:'3px solid #000', borderRadius:'14px', padding:'16px', background:'#fff', boxShadow:'6px 6px 0 #000'}}>
           <input value={scenario} onChange={e=>setScenario(e.target.value)} placeholder="e.g. saves cat from a tree" style={{width:'100%', padding:'14px', border:'3px solid #000', borderRadius:'10px', fontSize:'16px'}} />
