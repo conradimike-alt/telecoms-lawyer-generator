@@ -7,13 +7,16 @@ export default async function handler(req, res) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      version: "your-model-version-id-here", // <-- KEEP YOUR EXISTING VERSION ID
+      version: "8e7d1cc9c7e9f6c1a1a1a1a1a1a1a1a1", // <-- KEEP YOUR ORIGINAL WORKING VERSION ID HERE
       input: {
-        prompt: `Cartoon style superhero Telecoms Lawyer, bald with glasses, brown cape, TL yellow shield, white shirt black tie, scenario: ${scenario}, comic book, white background`,
+        prompt: `Cartoon superhero Telecoms Lawyer, bald with glasses, brown cape, yellow TL shield, white shirt black tie, scenario: ${scenario}, comic book style, white background`,
       },
     }),
   });
   const prediction = await response.json();
-  if (response.status !== 201) return res.status(500).json({ error: prediction.detail || "Failed" });
+  console.log(prediction);
+  if (response.status !== 201) {
+    return res.status(500).json({ error: prediction.detail || JSON.stringify(prediction) });
+  }
   res.status(200).json({ id: prediction.id });
 }
